@@ -26,62 +26,50 @@ public class DrawCurve extends JFrame implements MouseListener, MouseMotionListe
         this.setVisible(true);
     }
 
+
     public static void main(String[] args) {
         new DrawCurve();
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-
     }
 
     //鼠标按下
     @Override
     public void mousePressed(MouseEvent e) {
-
         this.start = new Point(e.getX(), e.getY());
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-
-
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-
     }
 
     @Override
     public void mouseDragged(MouseEvent e) {
         this.end = new Point(e.getX(), e.getY());
         this.canvas.repaint();
-
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
-
-
     }
 
     private class DrawLineCanvas extends Canvas {
-
         @Override
         public void paint(Graphics g) {
             if (start != null && end != null) {
-
                 g.setColor(Color.RED);
                 g.drawOval(end.x, end.y, 2, 2);
             }
-
-
         }
 
         @Override
