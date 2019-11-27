@@ -2,7 +2,7 @@ package CampusNavigation;
 
 import color.Point;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class Graph {
     // 最大支持节点数量
@@ -13,6 +13,8 @@ public class Graph {
 
     public int[][] MAP = new int[MAX][MAX];
 
+    int[][] Distance;
+    int[][] P;
 
     /**
      * 邻接矩阵的初始化
@@ -26,7 +28,7 @@ public class Graph {
             for (int j = 0; j < MAX; j++) {
                 if (i == j) MAP[i][j] = 0;
                 else
-                    MAP[i][j] = Integer.MAX_VALUE/3;
+                    MAP[i][j] = Integer.MAX_VALUE / 3;
             }
         }
         // 边赋值
@@ -85,18 +87,8 @@ public class Graph {
             MAP[11][9] = 600;
         }
 
-    }
-
-    /**
-     * Floyd算法求解最短路径
-     *
-     * @param startingPosition
-     * @param destination
-     * @return Minimum distance between startingPosition and destination
-     */
-    public int Floyd(int startingPosition, int destination) {
-        int[][] Distance = MAP.clone();
-        int[][] P = new int[numberOfNodes][numberOfNodes];
+        Distance = MAP.clone();
+        P = new int[numberOfNodes][numberOfNodes];
         for (int i = 0; i < numberOfNodes; i++) {
             for (int j = 0; j < numberOfNodes; j++) {
                 P[i][j] = j;
@@ -113,6 +105,18 @@ public class Graph {
                 }
             }
         }
+
+    }
+
+    /**
+     * Floyd算法求解最短路径
+     *
+     * @param startingPosition
+     * @param destination
+     * @return Minimum distance between startingPosition and destination
+     */
+    public int Floyd(int startingPosition, int destination) {
+
         return Distance[startingPosition][destination];
     }
 
@@ -129,22 +133,44 @@ public class Graph {
         return Floyd(startingPositionIndex, destinationIndex);
     }
 
+    public int[] Route(int startingPosition, int destination) {
+        int[] route = new int[MAX];
+        int len = 0;
+        int k;
+        route[len++] = destination;
+        if (P[startingPosition][destination] == destination) {
+            route[len++] = startingPosition;
+        }
+        else {
+            k = destination;
+            while (P[startingPosition][k] != k) {
+                k = P[startingPosition][k];
+                route[len++] = k;
+            }
+            route[len++] = startingPosition;
+        }
+        for (int i = 0; i < len; i++) {
+            System.out.println(route[i] + "  ");
+        }
+
+
+        return route;
+    }
+
     public static void main(String[] args) {
 
         Graph graph = new Graph();
         graph.init();
 
-//        for (int i = 0; i < graph.Place.length; i++) {
-//
-//            for (int j = 0; j < graph.Place.length; j++) {
-//
-//                System.out.print(graph.MAP[i][j] + " ");
-//            }
-//            System.out.println();
-//        }
-        System.out.println(graph.Floyd("操场","校门南口"));
+        for (int i = 0; i < graph.numberOfNodes; i++) {
 
-        System.out.println(graph.Floyd(1, 11));
+            System.out.println(i + "  :" + graph.Place[i]);
+        }
+
+        System.out.println(graph.Floyd("操场", "校门南口"));
+
+        System.out.println(graph.Floyd(1, 9));
+        graph.Route(1, 9);
 
 
     }
