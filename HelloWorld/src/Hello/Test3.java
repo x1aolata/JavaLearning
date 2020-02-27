@@ -25,13 +25,15 @@ public class Test3 {
 
     public static void main(String[] args) {
 
-        Test3 test3 =new Test3(20,"蒋若辉",true);
+        Test3 test3 = new Test3(20, "蒋若辉", true);
 //        Test3 test3 =new Test3(20,"蒋若辉");
         System.out.println(test3.age);
         System.out.println(test3.name);
         System.out.println(test3.ism);
 
 
-
     }
 }
+
+
+

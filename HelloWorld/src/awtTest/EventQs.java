@@ -3,6 +3,7 @@ package awtTest;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 public class EventQs {
     private Frame f = new Frame("测试事件");
@@ -11,15 +12,26 @@ public class EventQs {
 
     public void init() {
         // 注册事件监听器
-        ok.addActionListener(e -> {
-            System.out.println("用户单击了ok按钮");
-            tf.setText("Hello World");
-        });   //①
+//        ok.addActionListener(e -> {
+//            System.out.println("用户单击了ok按钮");
+//            tf.setText("Hello World");
+//        });
+//        ok.addActionListener(new OkListener());
+
+        ok.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("用户单击了ok按钮");
+                tf.setText("Hello World");
+            }
+        });
+
         f.add(tf);
         f.add(ok, BorderLayout.SOUTH);
         f.pack();
         f.setVisible(true);
     }
+
 
     // 定义事件监听器类
     class OkListener implements ActionListener   //②
@@ -31,6 +43,7 @@ public class EventQs {
             tf.setText("Hello World");
         }
     }
+
 
     public static void main(String[] args) {
         new EventQs().init();

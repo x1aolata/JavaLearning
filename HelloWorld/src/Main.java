@@ -1,18 +1,42 @@
 import java.util.Scanner;
 
-public class Main {
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        String s = in.nextLine();
-        String subs;
-        int n = in.nextInt();
-        in.nextLine();
-        for (int i = 0; i < n; i++) {
-            subs = in.nextLine();
-            if (s.contains(subs))
-                System.out.println(s.substring(s.indexOf(subs)));
-            else
-                System.out.println("Not Found");
-        }
+class A {
+    void run() {
+        System.out.println("A");
     }
+
+    void f() {
+        System.out.println("AFF");
+    }
+}
+
+class B extends A {
+    @Override
+    void run() {
+        System.out.println("B");
+    }
+}
+
+class C extends A {
+    @Override
+    void run() {
+        System.out.println("C");
+    }
+
+
+}
+
+class Main {
+
+
+    public static void main(String[] args) {
+        A a = new B();
+        a.run();
+        a = new C();
+        a.run();
+
+
+    }
+
+
 }

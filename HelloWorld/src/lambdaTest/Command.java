@@ -1,5 +1,5 @@
 package lambdaTest;
 
-public interface Command {
+ interface Command {
     void process(int[] target);
 }

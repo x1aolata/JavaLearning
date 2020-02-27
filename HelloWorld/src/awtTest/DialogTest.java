@@ -1,7 +1,7 @@
 package awtTest;
-
 import java.awt.*;
 import java.awt.event.ActionListener;
+
 
 public class DialogTest {
     Frame f = new Frame("测试");
@@ -11,6 +11,7 @@ public class DialogTest {
     Button b2 = new Button("Open non-modal dialog");
 
     public void init() {
+        f.setBounds(100,100,200,300);
         d1.setBounds(20, 30, 300, 400);
         d2.setBounds(20, 30, 300, 400);
         b1.addActionListener(e -> d1.setVisible(true));
@@ -18,8 +19,9 @@ public class DialogTest {
         b2.addActionListener(e -> d2.setVisible(true));
         f.add(b1);
         f.add(b2, BorderLayout.SOUTH);
-        f.pack();
+//        f.pack();
         f.setVisible(true);
+
     }
 
     public static void main(String[] args) {

@@ -22,6 +22,14 @@ public class Node {
         this.latitude = latitude;
     }
 
+    public Node(String name, String number, double longitude, double latitude, String about) {
+        this.name = name;
+        this.number = number;
+        this.about = about;
+        this.longitude = longitude;
+        this.latitude = latitude;
+    }
+
     public double getLongitude() {
         return longitude;
     }
@@ -60,5 +68,10 @@ public class Node {
 
     public void setAbout(String about) {
         this.about = about;
+    }
+
+    @Override
+    public String toString() {
+        return name + " " + number + " " + longitude + " " + latitude + " " + about;
     }
 }
